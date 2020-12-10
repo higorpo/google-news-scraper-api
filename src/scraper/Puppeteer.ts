@@ -10,7 +10,7 @@ class Puppeteer {
     }
 
     public async initializePuppeteer(): Promise<void> {
-        this.puppeteerBrowser = await puppeteer.launch({ headless: false })
+        this.puppeteerBrowser = await puppeteer.launch({ headless: true })
         this.puppeteerPage = await this.puppeteerBrowser.newPage()
         await this.puppeteerPage.goto(this.urlPage, { waitUntil: 'networkidle2' })
     }
