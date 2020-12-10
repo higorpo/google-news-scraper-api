@@ -1,0 +1,8 @@
+{
+  "name": "google-news-scraper-api",
+  "description": "A Google News scraper API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Higor <higorpiresoliveira@gmail.com>",
+  "license": "MIT"
+}
