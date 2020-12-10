@@ -15,6 +15,12 @@ Like
 curl -X GET https://google-news-scraper-api.herokuapp.com/news?lang=en-US
 ```
 
+You can also include the parameter **q** to search for certain news items, for example:
+
+```ssh
+curl -X GET https://google-news-scraper-api.herokuapp.com/news?lang=en-US&q=covid19
+```
+
 The API will return a JSON with an array of objects containing the following structure:
 
 ```JS
