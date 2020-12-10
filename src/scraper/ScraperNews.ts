@@ -1,36 +1,18 @@
-import puppeteer from 'puppeteer'
-
-interface Element extends globalThis.Element {
-    innerText: string
-    href: string
-}
-
-interface News {
-    news_title: string
-    news_url: string
-    newspaper_name: string
-    datetime: string | null
-}
-
+import { News, Element } from './../types';
+import Puppeteer from './Puppeteer';
 class ScraperNews {
     private langCode: string
-    private puppeteerBrowser: puppeteer.Browser | undefined
-    private puppeteerPage: puppeteer.Page | undefined
 
     constructor(langCode: string) {
         this.langCode = langCode
     }
 
-    private async initializePuppeteer(urlPage: string): Promise<void> {
-        this.puppeteerBrowser = await puppeteer.launch({ headless: true })
-        this.puppeteerPage = await this.puppeteerBrowser.newPage()
-        await this.puppeteerPage.goto(urlPage, { waitUntil: 'networkidle2' })
-    }
+    private async scraperData(puppeteer: Puppeteer): Promise<News[]> {
+        const page = puppeteer.getPageRef()
 
-    private async scraperData(): Promise<News[]> {
-        await this.puppeteerPage?.waitForSelector('[jscontroller=mhFxVb]')
+        await page?.waitForSelector('[jscontroller=mhFxVb]')
 
-        const news: News[] | undefined = await this.puppeteerPage?.$$eval('[jscontroller=mhFxVb]', (elements) => {
+        const news: News[] | undefined = await page?.$$eval('[jscontroller=mhFxVb]', (elements) => {
             return elements.map((element) => {
                 const anchorNode = element.querySelector('.DY5T1d.RZIKme') as Element
 
@@ -48,7 +30,7 @@ class ScraperNews {
             })
         })
 
-        await this.puppeteerBrowser?.close()
+        await puppeteer.closeBrowser()
 
         if (!news) {
             return []
@@ -58,13 +40,17 @@ class ScraperNews {
     }
 
     public async getAllRecentNews(): Promise<News[]> {
-        await this.initializePuppeteer(`https://news.google.com/u/1/topstories?hl=${this.langCode}`)
-        return await this.scraperData()
+        const puppeteer = new Puppeteer(`https://news.google.com/u/1/topstories?hl=${this.langCode}`)
+        await puppeteer.initializePuppeteer()
+
+        return await this.scraperData(puppeteer)
     }
 
     public async getNewsBySearchTerm(searchTerm: string): Promise<News[]> {
-        await this.initializePuppeteer(`https://news.google.com/u/1/search?q=${searchTerm}&hl=${this.langCode}`)
-        return await this.scraperData()
+        const puppeteer = new Puppeteer(`https://news.google.com/u/1/search?q=${searchTerm}&hl=${this.langCode}`)
+        await puppeteer.initializePuppeteer()
+
+        return await this.scraperData(puppeteer)
     }
 }
 

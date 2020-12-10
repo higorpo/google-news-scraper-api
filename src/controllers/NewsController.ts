@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import ScraperNews from "../scraper/ScraperNews";
-
 class NewsController {
     async index(request: Request, response: Response) {
         let { lang, q: searchQuery } = request.query
@@ -12,10 +11,6 @@ class NewsController {
         const news = searchQuery ? await scraper.getNewsBySearchTerm(searchQuery as string) : await scraper.getAllRecentNews()
 
         response.json(news)
-    }
-
-    async show(request: Request, response: Response) {
-        response.json({ hello: 'world' })
     }
 }
 
