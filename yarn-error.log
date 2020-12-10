@@ -1,30 +1,30 @@
 Arguments: 
-  /home/bridge/.nvm/versions/node/v14.15.1/bin/node /usr/share/yarn/bin/yarn.js add @type/cors -D
+  /home/bridge/.nvm/versions/node/v10.16.3/bin/node /usr/share/yarn/bin/yarn.js add @types/express-cache-middleware -D
 
 PATH: 
-  /home/bridge/.nvm/versions/node/v14.15.1/bin:/opt/maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/bridge/.yarn/bin:/home/bridge/.yarn/bin:/home/bridge/.yarn/bin
+  /home/bridge/.nvm/versions/node/v10.16.3/bin:/opt/maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/bridge/.yarn/bin:/home/bridge/.yarn/bin:/home/bridge/.yarn/bin
 
 Yarn version: 
   1.22.5
 
 Node version: 
-  14.15.1
+  10.16.3
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: https://packagecloud.io/github/git-lfs/npm/@type%2fcors: Not found
+  Error: https://packagecloud.io/github/git-lfs/npm/@types%2fexpress-cache-middleware: Not found
       at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
-      at Request.emit (events.js:315:20)
+      at Request.emit (events.js:198:13)
       at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141721:10)
-      at Request.emit (events.js:315:20)
+      at Request.emit (events.js:198:13)
       at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141643:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (_stream_readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
@@ -43,6 +43,7 @@ npm manifest:
       "url": "^0.11.0"
     },
     "devDependencies": {
+      "@types/cors": "^2.8.8",
       "@types/express": "^4.17.9",
       "@types/puppeteer": "^5.4.2",
       "ts-node-dev": "^1.1.1",
@@ -78,6 +79,13 @@ Lockfile:
     dependencies:
       "@types/node" "*"
   
+  "@types/cors@^2.8.8":
+    version "2.8.8"
+    resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.8.tgz#317a8d8561995c60e35b9e0fcaa8d36660c98092"
+    integrity sha512-fO3gf3DxU2Trcbr75O7obVndW/X5k8rJNZkLXlQWStTHhP71PkRqjwPIEI0yMnJdg9R9OasjU+Bsr+Hr1xy/0w==
+    dependencies:
+      "@types/express" "*"
+  
   "@types/express-serve-static-core@*":
     version "4.17.15"
     resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.15.tgz#7c3d37829a991da9a507c1efd44d97532e8909e3"
@@ -87,7 +95,7 @@ Lockfile:
       "@types/qs" "*"
       "@types/range-parser" "*"
   
-  "@types/express@^4.17.9":
+  "@types/express@*", "@types/express@^4.17.9":
     version "4.17.9"
     resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.9.tgz#f5f2df6add703ff28428add52bdec8a1091b0a78"
     integrity sha512-SDzEIZInC4sivGIFY4Sz1GG6J9UObPwCInYJjko2jzOf/Imx/dlpume6Xxwj1ORL82tBbmN4cPDIDkLbWHk9hw==

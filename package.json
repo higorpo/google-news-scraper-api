@@ -6,6 +6,8 @@
   "author": "Higor <higorpiresoliveira@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/cache-manager": "^2.10.3",
+    "cache-manager": "^3.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-cache-middleware": "^1.0.1",
