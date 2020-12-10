@@ -27,9 +27,7 @@ class ScraperNews {
         await this.puppeteerPage.goto(urlPage, { waitUntil: 'networkidle2' })
     }
 
-    public async getAllRecentNews(): Promise<News[]> {
-        await this.initializePuppeteer(`https://news.google.com/u/1/topstories?hl=${this.langCode}`)
-
+    private async scraperData(): Promise<News[]> {
         await this.puppeteerPage?.waitForSelector('[jscontroller=mhFxVb]')
 
         const news: News[] | undefined = await this.puppeteerPage?.$$eval('[jscontroller=mhFxVb]', (elements) => {
@@ -57,6 +55,16 @@ class ScraperNews {
         }
 
         return news
+    }
+
+    public async getAllRecentNews(): Promise<News[]> {
+        await this.initializePuppeteer(`https://news.google.com/u/1/topstories?hl=${this.langCode}`)
+        return await this.scraperData()
+    }
+
+    public async getNewsBySearchTerm(searchTerm: string): Promise<News[]> {
+        await this.initializePuppeteer(`https://news.google.com/u/1/search?q=${searchTerm}&hl=${this.langCode}`)
+        return await this.scraperData()
     }
 }
 
